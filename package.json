@@ -1,0 +1,26 @@
+{
+  "name": "cucumber-ffw",
+  "version": "1.0.0",
+  "description": "Techncal task for ffw",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js -f json:cucumber_report.json",
+    "test:focus": "cucumber-js --tags @focus -f json:cucumber_report.json",
+    "generate:report": "node reporter.js"
+  },
+  "keywords": [
+    "Puppeteer",
+    "Cucumber"
+  ],
+  "author": "Neli Temelkova",
+  "license": "ISC",
+  "dependencies": {
+    "@supercharge/strings": "^2.0.0",
+    "chai": "^4.3.8",
+    "cucumber-html-reporter": "^7.1.1",
+    "puppeteer": "^21.3.1"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^9.5.1"
+  }
+}
