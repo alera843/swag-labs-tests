@@ -15,27 +15,9 @@ module.exports = {
         try {
           await page.waitForSelector(selector);
           await page.click(selector);
-        //   await page.keyboard.down("Control");
-        //   await page.keyboard.press("A");
-        //   await page.keyboard.up("Control");
-        //   await page.keyboard.press("Backspace");
           await page.type(selector, text, { delay: 30 });
         } catch (error) {
           throw new Error(`Could not type into selector: ${selector}`);
-        }
-      },
-
-      generateRandomString: function (length) {
-        return Math.random().toString(36).substring(2,(length + 2));
-      },
-
-      clickByXpath: async function (page, selector) {
-        try {
-          await page.waitForXPath(selector).click;
-        //   const elements = await page.$x(selector);
-        //   await elements[0].click({ delay: 20 });
-        } catch (error) {
-            throw new Error('Cannot click element by xpath')
         }
       },
 
@@ -50,11 +32,17 @@ module.exports = {
       getText: async function (page, selector) {
         try {
           await page.waitForTimeout(2000);
-          await page.waitForSelector(selector);
+          await page.waitForSelector(selector, {timeout: 400});
           return await page.$eval(selector, (element) => element.textContent);
         } catch (error) {
-          throw new Error(`Could not get text from selector: ${selector}`);
+          console.log("getText error", error)
+          throw new Error(`Could not get text from selector: ${selector}`, error);
         }
+      },
+
+      getElement: async function(page, selector) {
+        const element = await page.$(selector);
+        return element;
       },
 
       clickByText: async function (page, selector) {

@@ -53,11 +53,3 @@ When I type "locked_out_user" value in the "username" field
 And I type "secret_sauce" value in the "password" field
 And I click the login button
 Then I should see "Epic sadface: Sorry, this user has been locked out." error message
-
-# @focus
-# Scenario: Data breach alert displayed to user with vaulnerable password
-# Given I have opened the login page
-# When I type "problem_user" value in the "username" field
-# And I type "secret_sauce" value in the "password" field
-# And I click the login button
-# Then I should see a databreach alert dispalyed to the user

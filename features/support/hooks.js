@@ -20,12 +20,12 @@ AfterStep(async function(testCase){
 
 
 // executed once after all tests
-// AfterAll(async function() {
-//   // Make sure the browser is closed
-//   if (browser != null) {
-//     browser.close()
-//   }
-// })
+AfterAll(async function() {
+  // Make sure the browser is closed
+  if (browser != null) {
+    browser.close()
+  }
+})
 
 // executed before every test
 Before(async function() {
@@ -68,7 +68,7 @@ After(async function(testCase) {
     console.log(`Test: '${testCase.pickle.name}' - failed...`)
   }
 
-//   if (browser != null) {
-//     browser.close()
-//   }
+  if (browser != null) {
+    browser.close()
+  }
 })

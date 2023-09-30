@@ -1,6 +1,7 @@
 const {Given, When, Then} = require('@cucumber/cucumber');
 // const { util } = require('chai');
 const utils = require('../../lib/utils');
+const checkoutStepOnePage = require('../../support/pages/checkoutStepOnePage');
 // const { usernameInput, loginButton } = require('../../support/pages/loginPage');
 const loginPage = require('../../support/pages/loginPage');
 const productsPage = require('../../support/pages/productsPage');
@@ -28,6 +29,27 @@ When('I type {string} value in the {string} field',
 				);
                 await this.page.waitForTimeout(1000);
 				break;
+			case 'name':
+				await utils.clickAndTypeText(
+					this.page,
+					checkoutStepOnePage.name,
+					value
+				);
+				break;
+			case 'family':
+				await utils.clickAndTypeText(
+					this.page,
+					checkoutStepOnePage.family,
+					value
+				);
+				break;
+			case 'postalCode':
+				await utils.clickAndTypeText(
+					this.page,
+					checkoutStepOnePage.postalCode,
+					value
+				);
+				break;
 		}
 	}          
 );
@@ -47,24 +69,3 @@ Then(/^I should see the Products page$/, async function() {
    let pageTitle = await utils.getText(this.page, productsPage.pageTitle);
    await expect(pageTitle).to.equal("Products");
 });
-
-// Then (/^I should see a databreach alert dispalyed to the user$/, async function() {
-
-// async function handleAlert(page) {
-
-//     const element = await page.$( "#alert" );
-
-//     element.click();
-
-//     page.on( 'dialog', async dialog => {
-
-//         console.log( dialog.type() );
-
-//         console.log( dialog.message() );
-
-//         await dialog.accept();
-
-//     } );
-
-// }
-// });

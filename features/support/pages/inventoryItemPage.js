@@ -1,5 +1,6 @@
 const inventoryItemPage = {
-    "inventoryName": ".inventory_details_name large_size"
+    "inventoryName": ".inventory_details_name",
+    "backpackInventoryItemAddToCart": "#add-to-cart-sauce-labs-backpack"
 }
 
 module.exports = inventoryItemPage;

@@ -43,9 +43,11 @@ When('I {string} product from my cart', async function(removeProduct) {
 
 When('I open the inventory item page for {string} product', async function(productName) {
     await utils.click(this.page, productsPage[productName]);
-    // let itemName = await utils.getText(this.page, inventoryItemPage[inventoryName]);
-    // await expect(itemName).to.equal()
-})
+});
+
+When('I click {string} to add product to cart', async function(item) {
+    await utils.click(this.page, inventoryItemPage[item]);
+});
 
 
 // Then steps start here
@@ -58,7 +60,7 @@ Then(/^I should see that the button text changed to Remove$/,async function() {
 Then(/^I should see badge indication on the cart icon showing 1 product has been added$/, async function() {
     let cartBadgeIndication = await utils.getText(this.page, productsPage.shoppingCartIconBadgeCount);
     await expect(cartBadgeIndication).to.equal("1");
-})
+});
 
 Then('I should see that the {string} button text is Add to cart', async function(productButton) {
     let addToCartButtonText = await utils.getText(this.page, productsPage[productButton]);
@@ -67,10 +69,25 @@ Then('I should see that the {string} button text is Add to cart', async function
 
 Then(/^the product should be removed$/, async function() {
     await expect(cartPage.removedProduct).to.exist
-})
+});
 
-// Then('There is no badge indication on the cart icon', async function() {
-//     let cartBadgeIndication = await utils.getText(this.page, productsPage.shoppingCartIconBadgeCount);
-//     console.log(" towa e",cartBadgeIndication );
-//     // await expect(cartBadgeIndication).to.be(null);
-// })
+Then('There is no badge indication on the cart icon', async function() {
+    let cartBadgeIndication = await utils.getElement(this.page, productsPage.shoppingCartIconBadgeCount);
+    console.log(" towa e",cartBadgeIndication );
+    await expect(cartBadgeIndication).to.be.null;
+});
+
+Then('I should see that the product name is {string}', async function(productName) {
+    let itemText = await utils.getText(this.page, cartPage.inventoryName);
+    await expect(itemText).to.equal(productName);
+});
+
+Then(/^I should see that the quantity of the product is 1$/, async function() {
+   let quantity = await utils.getText(this.page,cartPage.productQuantity);
+   await expect(quantity).to.equal("1");
+});
+
+Then('I should see that the price of the product is {string}', async function(price) {
+    let productPrice = await utils.getText(this.page, cartPage.productPrice);
+    await expect(productPrice).to.equal(price);
+})
